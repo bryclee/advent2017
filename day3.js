@@ -100,29 +100,23 @@ class Spiral {
                     )
                 )
 
-        console.log('----');
         console.log(transformed.map(r => r.join('  ')).join('\n'))
         console.log('----');
     }
 }
 
 function test1(n) {
-    console.log('start test 1:');
-
     const s = new Spiral();
 
     for (let i = 1; i <= n; i++) {
         s.add(i);
     }
 
-    console.log('Distance: ', Math.abs(s.x) + Math.abs(s.y));
+    return Math.abs(s.x) + Math.abs(s.y);
 }
 
 function test2(n) {
-    console.log('start test 2');
-
     const s = new Spiral();
-
     const getLastVal = () => s.get(s.currentKey());
 
     s.add(1);
@@ -147,8 +141,10 @@ function test2(n) {
         s.add(surroundingSum);
     }
 
-    console.log('Result:', s.get(s.currentKey()));
+    return s.get(s.currentKey());
 }
 
-test1(289326);
-test2(289326);
+const input = 289326;
+
+console.log('Test 1:', test1(input));
+console.log('Test 2:', test2(input));

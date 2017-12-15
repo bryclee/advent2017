@@ -1,5 +1,5 @@
 const fs = require('fs');
-const input = fs.readFileSync('./day4input.txt').toString();
+const input = fs.readFileSync('./inputs/day4.txt').toString();
 const passphrases = input.split('\n').filter(x => x);
 
 function validate(fn, str) {

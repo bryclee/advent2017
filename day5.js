@@ -1,4 +1,4 @@
-const input = require('fs').readFileSync('./day5input.txt').toString();
+const input = require('fs').readFileSync('./inputs/day5.txt').toString();
 const instructions =
     input.split('\n')
         .filter(x => x)
