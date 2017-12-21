@@ -1,8 +1,10 @@
 const input = require('fs').readFileSync('./inputs/day5.txt').toString();
-const instructions =
+const getInput = () =>
     input.split('\n')
         .filter(x => x)
         .map(x => Number(x));
+const ANSWERS = require('./answers.json');
+const { runTests } = require('./utils');
 
 function test1(inst) {
     inst = inst.slice();
@@ -43,7 +45,18 @@ function test2(inst) {
 
 const sampleInstructions = [0,3,0,1,-3];
 
-console.log('test 1 with sample:', test1(sampleInstructions));
-console.log('test 1:', test1(instructions));
-console.log('test 2 with sample:', test2(sampleInstructions));
-console.log('test 2:', test2(instructions));
+describe('day 5', () => {
+    describe('test 1', () => {
+        runTests([
+            { input: sampleInstructions, expected: 5 },
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day5.test1 }
+        ], test1);
+    });
+
+    describe('test 1', () => {
+        runTests([
+            { input: sampleInstructions, expected: 10 },
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day5.test2 }
+        ], test2);
+    });
+});

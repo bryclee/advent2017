@@ -1,4 +1,4 @@
-const getInput = () => {
+const getRawInput = () => {
     const raw = require('fs').readFileSync('./inputs/day8.txt').toString();
 
     return raw.split('\n').filter(x => x);
@@ -21,6 +21,11 @@ const parseInstruction = line => {
         throw new Error(`Failed to parse instruction: ${line}\n${err.toString()}`);
     }
 };
+
+const getInput = () => getRawInput().map(parseInstruction);
+const ANSWERS = require('./answers.json');
+const { runTests } = require('./utils.js');
+
 
 const commands = {
     'inc': (reg, val) => reg + val,
@@ -87,5 +92,16 @@ const test2 = (insts) => {
     return max;
 }
 
-console.log('Test 1:', test1(getInput().map(parseInstruction)));
-console.log('Test 2:', test2(getInput().map(parseInstruction)));
+describe('day 8', () => {
+    describe('test 1', () => {
+        runTests([
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day8.test1 }
+        ], test1);
+    });
+
+    describe('test 2', () => {
+        runTests([
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day8.test2 }
+        ], test2);
+    });
+});

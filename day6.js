@@ -9,6 +9,9 @@ function getInput() {
     return state;
 }
 
+const ANSWERS = require('./answers.json');
+const { runTests } = require('./utils');
+
 const getKey = state => state.join(',');
 
 const redistribute = state => {
@@ -52,6 +55,17 @@ function test2(state) {
     return steps - map[getKey(state)];
 }
 
-console.log('test1 with sample input:', test1(getSampleInput()));
-console.log('test1 with input:', test1(getInput()));
-console.log('test2 with input:', test2(getInput()));
+describe('day 6', () => {
+    describe('test 1', () => {
+        runTests([
+            { input: getSampleInput(), expected: 5 },
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day6.test1 }
+        ], test1);
+    });
+
+    describe('test 2', () => {
+        runTests([
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day6.test2 }
+        ], test2);
+    });
+});

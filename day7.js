@@ -14,6 +14,8 @@ function getInput() {
             };
         });
 }
+const ANSWERS = require('./answers.json');
+const { runTests } = require('./utils');
 
 class Tower {
     constructor({name, weight}) {
@@ -108,5 +110,16 @@ function test2(input) {
     return standardTowerWeight - (outlier.towerWeight - outlier.weight);
 }
 
-console.log('Test 1:', test1(getInput()));
-console.log('Test 2:', test2(getInput()));
+describe('day 7', () => {
+    describe('test 1', () => {
+        runTests([
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day7.test1 }
+        ], test1);
+    });
+
+    describe('test 2', () => {
+        runTests([
+            { desc: 'final input', input: getInput(), expected: ANSWERS.day7.test2 }
+        ], test2);
+    });
+});

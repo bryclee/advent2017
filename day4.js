@@ -1,4 +1,5 @@
 const fs = require('fs');
+const ANSWERS = require('./answers.json');
 const input = fs.readFileSync('./inputs/day4.txt').toString();
 const passphrases = input.split('\n').filter(x => x);
 
@@ -28,7 +29,7 @@ function test1(passphrases) {
         return sum;
     }, 0);
 
-    console.log('Test 1:', result);
+    return result;
 }
 
 function test2(passphrases) {
@@ -40,9 +41,19 @@ function test2(passphrases) {
         return sum;
     }, 0);
 
-    console.log('Test 2:', result);
+    return result;
 }
 
+describe('day 4', () => {
+    describe('test 1', () => {
+        test('final input', () => {
+            expect(test1(passphrases)).toBe(ANSWERS.day4.test1);
+        });
+    });
 
-test1(passphrases);
-test2(passphrases);
+    describe('test 2', () => {
+        test('final input', () => {
+            expect(test2(passphrases)).toBe(ANSWERS.day4.test2);
+        });
+    });
+});

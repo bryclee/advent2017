@@ -1,3 +1,5 @@
+const ANSWERS = require('./answers.json');
+
 function createKey({ x, y }) {
     return `${x},${y}`;
 }
@@ -146,5 +148,16 @@ function test2(n) {
 
 const input = 289326;
 
-console.log('Test 1:', test1(input));
-console.log('Test 2:', test2(input));
+describe('day 3', () => {
+    describe('test 1', () => {
+        test('final input', () => {
+            expect(test1(input)).toBe(ANSWERS.day3.test1);
+        });
+    });
+
+    describe('test 2', () => {
+        test('final input', () => {
+            expect(test2(input)).toBe(ANSWERS.day3.test2);
+        });
+    });
+});

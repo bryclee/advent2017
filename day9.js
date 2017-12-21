@@ -11,8 +11,8 @@ class Garbage extends Array { }
 const getInput = () => {
     return require('fs').readFileSync('./inputs/day9.txt').toString().trim();
 };
-
 const ANSWERS = require('./answers.json');
+const { runTests } = require('./utils.js');
 
 // Array helper, return first result from applying fn to items of the array
 const first = (arr, fn) => {
@@ -22,10 +22,12 @@ const first = (arr, fn) => {
 // Make sure that the str passed is valid
 const valid = str => str && str.length;
 
-// Part 1 - PARSER RULES
-// group: {}, {{},{}}
-// garbage: <>, does not nest <
-// cancel: !: cancels next char
+/**
+ * PARSER RULES
+ * group: {}, {{},{}}
+ * garbage: <>, does not nest <
+ * cancel: !, cancels next char
+ */
 
 const parseCancel = str => {
     if (!valid(str)) return null;
@@ -141,14 +143,6 @@ const tallyGarbage = tree => {
 
 const test1 = str => tallyGroups(parse(str));
 const test2 = str => tallyGarbage(parse(str));
-
-const runTests = (testCases, fn) => {
-    testCases.forEach(tc => {
-        test(tc.desc || tc.input, () => {
-            expect(fn(tc.input)).toEqual(tc.expected);
-        });
-    });
-};
 
 describe('day 9', () => {
     describe('part 1', () => {
