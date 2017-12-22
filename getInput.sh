@@ -14,4 +14,4 @@ then
     exit
 fi
 
-curl -o inputs/$1 --cookie "session=$SECRET" https://adventofcode.com/2017/day/$1/input
+curl -o inputs/day$1.txt --cookie "session=$SECRET" https://adventofcode.com/2017/day/$1/input

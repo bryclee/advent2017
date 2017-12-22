@@ -1,7 +1,10 @@
 module.exports.runTests = (testCases, fn) => {
     testCases.forEach(tc => {
-        test(tc.desc || tc.input, () => {
-            expect(fn(tc.input)).toBe(tc.expected);
-        });
+        test(
+            tc.desc || typeof tc.input === 'object' ? JSON.stringify(tc.input) : tc.input,
+            () => {
+                expect(fn(tc.input)).toEqual(tc.expected);
+            }
+        );
     });
-}
+};
