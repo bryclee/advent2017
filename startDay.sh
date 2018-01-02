@@ -1,3 +1,4 @@
+./getInput.sh $1
 echo "
 const rawInput = require('fs').readFileSync('./inputs/day$1.txt').toString().trim();
 const ANSWERS = require('./answers.json');
